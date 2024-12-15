@@ -1,4 +1,6 @@
 using Calculator.Core;
+using Calculator.Core.Data;
+using Calculator.Utility;
 
 namespace Calculator.Console;
 
@@ -61,13 +63,5 @@ public class ConsoleInput: ICalculatorInput, IDisposable
         {
             subscriber.OnCompleted();
         }
-    }
-}
-
-internal class DelegateDisposable(Action callBack) : IDisposable
-{
-    public void Dispose()
-    {
-        callBack();
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{208A2648-4AB2-4629-884C-A745D17D54FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Console", "Calculator.Console\Calculator.Console.csproj", "{208A2648-4AB2-4629-884C-A745D17D54FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Core.Tests", "Calculator.Core.Tests\Calculator.Core.Tests.csproj", "{8EAF3145-EFB7-4F8A-9F96-B17200078EB4}"
 EndProject

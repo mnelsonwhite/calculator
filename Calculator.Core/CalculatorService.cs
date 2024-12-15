@@ -1,5 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using Calculator.Core.Data;
+using Calculator.Core.Syntax;
+using Calculator.Core.Utility;
 
 namespace Calculator.Core;
 

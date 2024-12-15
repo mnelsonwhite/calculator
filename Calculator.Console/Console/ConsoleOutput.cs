@@ -1,4 +1,5 @@
 using Calculator.Core;
+using Calculator.Core.Data;
 
 namespace Calculator.Console;
 
@@ -16,22 +17,12 @@ public class ConsoleOutput : ICalculatorOutput
         {
             System.Console.ForegroundColor = originalColor;
         }
-        
     }
 
     public void OnError(Exception error)
     {
-        var originalColor = System.Console.ForegroundColor;
-        try
-        {
-            System.Console.ForegroundColor = ConsoleColor.Red;
-            System.Console.WriteLine(error.Message);
-            System.Console.WriteLine(error.StackTrace);
-        }
-        finally
-        {
-            System.Console.ForegroundColor = originalColor;
-        }
+        System.Console.Error.WriteLine(error.Message);
+        System.Console.Error.WriteLine(error.StackTrace);
     }
 
     public void OnNext(char value)

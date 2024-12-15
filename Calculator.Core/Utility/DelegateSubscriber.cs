@@ -1,6 +1,4 @@
-using System;
-
-namespace Calculator.Core;
+namespace Calculator.Core.Utility;
 
 internal class DelegateObserver<T>(
     Action? onCompleted = null,

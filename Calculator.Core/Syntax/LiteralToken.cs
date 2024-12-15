@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace Calculator.Core;
+namespace Calculator.Core.Syntax;
 
 public record LiteralToken(decimal Value) : ICalculatorToken
 {

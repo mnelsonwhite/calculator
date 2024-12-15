@@ -2,6 +2,7 @@
 
 using Calculator.Console;
 using Calculator.Core;
+using Calculator.Core.Syntax;
 
 var consoleOutput = new ConsoleOutput();
 using var consoleInput = new ConsoleInput();

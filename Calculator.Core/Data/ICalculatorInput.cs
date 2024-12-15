@@ -1,5 +1,3 @@
-using System;
-
-namespace Calculator.Core;
+namespace Calculator.Core.Data;
 
 public interface ICalculatorInput : IObservable<char>;

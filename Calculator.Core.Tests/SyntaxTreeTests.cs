@@ -1,3 +1,4 @@
+using Calculator.Core.Syntax;
 using Calculator.Core.Tests.Utility;
 
 namespace Calculator.Core.Tests;

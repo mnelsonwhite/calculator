@@ -1,5 +1,6 @@
-using System;
 using System.Text;
+using Calculator.Core.Data;
+using Calculator.Core.Syntax;
 using Calculator.Core.Tests.Utility;
 using NSubstitute;
 
@@ -7,17 +8,10 @@ namespace Calculator.Core.Tests;
 
 public class CalculatorServiceTests
 {
-    private readonly ICalculatorOutput _output;
-    private readonly ICalculatorInput _input;
-    private readonly SyntaxTree _syntaxTree;
-    
-    public CalculatorServiceTests()
-    {
-        _output = Substitute.For<ICalculatorOutput>();
-        _input = Substitute.For<ICalculatorInput>();
-        _syntaxTree = new SyntaxTree();
-    }
-    
+    private readonly ICalculatorOutput _output = Substitute.For<ICalculatorOutput>();
+    private readonly ICalculatorInput _input = Substitute.For<ICalculatorInput>();
+    private readonly SyntaxTree _syntaxTree = new();
+
     [Fact]
     public void WhenEnteringDigits_DigitsShouldBeOutput()
     {
