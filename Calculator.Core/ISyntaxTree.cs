@@ -2,10 +2,7 @@ namespace Calculator.Core;
 
 public interface ISyntaxTree
 {
-    void Add(LiteralToken token);
-    void Add(OperatorToken token);
-    void Add(OpenParenthesisToken token);
-    bool Add(CloseParenthesisToken token);
+    bool Add(ICalculatorToken token);
     SyntaxTreeNode? Complete();
     void Reset();
 }

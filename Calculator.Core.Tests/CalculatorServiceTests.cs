@@ -7,27 +7,34 @@ namespace Calculator.Core.Tests;
 
 public class CalculatorServiceTests
 {
+    private readonly ICalculatorOutput _output;
+    private readonly ICalculatorInput _input;
+    private readonly SyntaxTree _syntaxTree;
+    
+    public CalculatorServiceTests()
+    {
+        _output = Substitute.For<ICalculatorOutput>();
+        _input = Substitute.For<ICalculatorInput>();
+        _syntaxTree = new SyntaxTree();
+    }
+    
     [Fact]
     public void WhenEnteringDigits_DigitsShouldBeOutput()
     {
         // arrange
-        var output = Substitute.For<ICalculatorOutput>();
-        var input = Substitute.For<ICalculatorInput>();
-        var syntaxTree = new SyntaxTree();
-        
         var outputBuilder = new StringBuilder();
-        output
+        _output
             .When(x => x.OnNext(Arg.Any<char>()))
             .Do(x => outputBuilder.Append(x[0]));
 
         IObserver<char>? inputObserver = null;
-        input.When(x => x.Subscribe(Arg.Any<IObserver<char>>()))
+        _input.When(x => x.Subscribe(Arg.Any<IObserver<char>>()))
             .Do(x => inputObserver = x[0] as IObserver<char>);
 
         using var calculator = new CalculatorService(
-            input,
-            output,
-            syntaxTree
+            _input,
+            _output,
+            _syntaxTree
         );
         
         // act
@@ -47,22 +54,19 @@ public class CalculatorServiceTests
     public void WhenSimpleOperation_DigitsShouldBeExpectedOutput(string tokens, string expectedOutput)
     {
         // arrange
-        var output = Substitute.For<ICalculatorOutput>();
-        var input = Substitute.For<ICalculatorInput>();
-        var syntaxTree = new SyntaxTree();
         var outputBuilder = new StringBuilder();
-        output
+        _output
             .When(x => x.OnNext(Arg.Any<char>()))
             .Do(x => outputBuilder.Append(x[0]));
 
         IObserver<char>? inputObserver = null;
-        input.When(x => x.Subscribe(Arg.Any<IObserver<char>>()))
+        _input.When(x => x.Subscribe(Arg.Any<IObserver<char>>()))
             .Do(x => inputObserver = x[0] as IObserver<char>);
 
         using var calculator = new CalculatorService(
-            input,
-            output,
-            syntaxTree
+            _input,
+            _output,
+            _syntaxTree
         );
         
         // act

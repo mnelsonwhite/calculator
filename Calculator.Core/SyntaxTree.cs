@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Calculator.Core;
 
 public class SyntaxTree : ISyntaxTree
@@ -10,18 +6,36 @@ public class SyntaxTree : ISyntaxTree
     private SyntaxTreeNode _rootNode = new(new RootToken());
     public SyntaxTreeNode RootNode => _rootNode;
     public Stack<(SyntaxTreeNode Root, SyntaxTreeNode? LastOperator)> _treeStack = new();
-    
 
-    public void Add(LiteralToken token) => ApplyNode(new SyntaxTreeNode(token));
-    public void Add(OperatorToken token) => ApplyNode(new SyntaxTreeNode(token));
-    public void Add(OpenParenthesisToken token)
+    public bool Add(ICalculatorToken token)
+    {
+        switch (token)
+        {
+            case LiteralToken literalToken:
+                Add(literalToken);
+                return true;
+            case OperatorToken operatorToken:
+                Add(operatorToken);
+                return true;
+            case OpenParenthesisToken openParenthesisToken:
+                Add(openParenthesisToken);
+                return true;
+            case CloseParenthesisToken closeParenthesisToken:
+                return Add(closeParenthesisToken);
+            default:
+                throw new ArgumentException("Unsupported token type", nameof(token));
+        }
+    }
+    private void Add(LiteralToken token) => ApplyNode(new SyntaxTreeNode(token));
+    private void Add(OperatorToken token) => ApplyNode(new SyntaxTreeNode(token));
+    private void Add(OpenParenthesisToken token)
     {
         _treeStack.Push((_rootNode, _lastOperator));
         _lastOperator = null;
         _rootNode = new(new RootToken());
     }
 
-    public bool Add(CloseParenthesisToken token)
+    private bool Add(CloseParenthesisToken token)
     {
         if (!_treeStack.Any())
         {

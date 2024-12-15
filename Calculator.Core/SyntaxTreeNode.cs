@@ -1,10 +1,13 @@
 namespace Calculator.Core;
 
-public class SyntaxTreeNode(ICalculatorToken token)
+public class SyntaxTreeNode(
+    ICalculatorToken token,
+    SyntaxTreeNode? left = null,
+    SyntaxTreeNode? right = null)
 {
     public readonly ICalculatorToken Token = token;
-    public SyntaxTreeNode? Left;
-    public SyntaxTreeNode? Right;
+    public SyntaxTreeNode? Left = left;
+    public SyntaxTreeNode? Right = right;
 
     public void RemoveChildren()
     {
