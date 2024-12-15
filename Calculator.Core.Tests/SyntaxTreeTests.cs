@@ -10,7 +10,7 @@ public class SyntaxTreeTests
     }
 
     [Fact]
-    public void Test1()
+    public void WhenAddingFirstLiteralToTree_ShouldOnLeftOfRoot()
     {
         // arrange
         var token1 = new LiteralToken(1);
@@ -24,7 +24,7 @@ public class SyntaxTreeTests
     }
     
     [Fact]
-    public void Test2()
+    public void WhenAddingFirstOperatorToTree_ShouldReplaceRootUnknownOperator()
     {
         // arrange
         var token1 = new LiteralToken(1);

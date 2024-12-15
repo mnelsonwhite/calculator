@@ -1,3 +1,5 @@
+using System;
+
 namespace Calculator.Core;
 
 internal class DelegateObserver<T>(

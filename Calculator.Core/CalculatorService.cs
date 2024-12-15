@@ -22,7 +22,6 @@ public class CalculatorService : IDisposable
             )
         );
         _syntaxTree = syntaxTree;
-
         _inputBuffer = new Stack<char>();
     }
 

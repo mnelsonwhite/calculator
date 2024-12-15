@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Calculator.Core;
 
 public class SyntaxTree : ISyntaxTree
@@ -107,7 +111,13 @@ public class SyntaxTree : ISyntaxTree
     private void HandleLowerOperatorInsert(SyntaxTreeNode targetNode, SyntaxTreeNode node)
     {
         var opToken = (OperatorToken)node.Token;
-        if (targetNode.Token is OperatorToken targetOpToken
+
+        if (targetNode == _rootNode)
+        {
+            ReplaceNode(node, targetNode);
+            node.Left = targetNode;
+        }
+        else if (targetNode.Token is OperatorToken targetOpToken
             && GetOperatorPrecedence(targetOpToken) > GetOperatorPrecedence(opToken))
         {
             HandleLowerOperatorInsert(
